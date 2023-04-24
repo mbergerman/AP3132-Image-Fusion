@@ -1,5 +1,7 @@
 
 %%
+% implementation of Hui Li et al. (1994) doi: 10.1109/ICIP.1994.413273
+
 image_a = rgb2gray(im2mat(readim("data/input/lytro_01/lytro_01_A.jpg")));
 image_b = rgb2gray(im2mat(readim("data/input/lytro_01/lytro_01_B.jpg")));
 image_a = cast(image_a, "double");
@@ -30,6 +32,7 @@ dipshow(mat2im(wt_b), 'percentile');
 dipshow(mat2im(fused_wt_max), 'percentile');
 
 %%
-dipshow(mat2im(haar_iwt(wt_a)));
-dipshow(mat2im(haar_iwt(fused_wt_max)));
+%dipshow(mat2im(haar_iwt(wt_a))); 
+fused_max = haar_iwt(fused_wt_max);
+dipshow(mat2im(fused_max)); %should be 'normal' mapping/scaling
 
