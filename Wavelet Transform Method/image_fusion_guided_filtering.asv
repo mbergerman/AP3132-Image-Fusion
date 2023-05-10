@@ -66,24 +66,8 @@ W_B_1 = guided_filter(P_1, I_1, 15, 0.3);
 W_B_2 = guided_filter(P_2, I_2, 15, 0.3);
 W_D_1 = guided_filter(P_1, I_1, 10, 1e-6);
 W_D_2 = guided_filter(P_2, I_2, 10, 1e-6);
-
-
-
-W_B_sum = W_B_1 + W_B_2;
-W_D_sum = W_D_1 + W_D_2;
-
-W_B_1 = W_B_1 ./ W_B_sum;
-W_B_2 = W_B_2 ./ W_B_sum;
-W_D_1 = W_D_1 ./ W_D_sum;
-W_D_2 = W_D_2 ./ W_D_sum;
-
 dipshow(W_B_1, 'lin');
-dipshow(W_B_2, 'lin');
-dipshow(W_D_1, 'lin');
-dipshow(W_D_2, 'lin');
-
-%%
-B_hat = W_B_1 .* B_1 + W_B_2 .* B_2;
-D_hat = W_D_1 .* D_1 + W_D_2 .* D_2;
-F = B_hat + D_hat;
-imshow(F);
+dipshow(W_B_1, 'lin');
+dipshow(W_B_1, 'lin');
+dipshow(W_B_1, 'lin');
+dipshow(W_B_1, 'lin');
