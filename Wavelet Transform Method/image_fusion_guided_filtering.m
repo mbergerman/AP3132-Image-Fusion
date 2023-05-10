@@ -2,9 +2,6 @@
 %%
 % implementation of Shutao Li (2013) doi: 10.1109/TIP.2013.2244222
 
-clear 
-close all
-
 I_1 = rgb2gray(im2mat(readim("data/input/lytro_01/lytro_01_A.jpg")));
 I_2 = rgb2gray(im2mat(readim("data/input/lytro_01/lytro_01_B.jpg")));
 I_1 = cast(I_1, "double");
@@ -69,13 +66,13 @@ W_D_2 = guided_filter(P_2, I_2, 10, 1e-6);
 
 
 
-W_B_sum = W_B_1 + W_B_2;
-W_D_sum = W_D_1 + W_D_2;
+W_B_exp = exp(W_B_1) + exp(W_B_2);
+W_D_exp = exp(W_D_1) + exp(W_D_2);
 
-W_B_1 = W_B_1 ./ W_B_sum;
-W_B_2 = W_B_2 ./ W_B_sum;
-W_D_1 = W_D_1 ./ W_D_sum;
-W_D_2 = W_D_2 ./ W_D_sum;
+W_B_1 = exp(W_B_1) ./ W_B_exp;
+W_B_2 = exp(W_B_2) ./ W_B_exp;
+W_D_1 = exp(W_D_1) ./ W_D_exp;
+W_D_2 = exp(W_D_2) ./ W_D_exp;
 
 dipshow(W_B_1, 'lin');
 dipshow(W_B_2, 'lin');
@@ -86,4 +83,4 @@ dipshow(W_D_2, 'lin');
 B_hat = W_B_1 .* B_1 + W_B_2 .* B_2;
 D_hat = W_D_1 .* D_1 + W_D_2 .* D_2;
 F = B_hat + D_hat;
-imshow(F);
+dipshow(F);
