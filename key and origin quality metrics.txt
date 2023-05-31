@@ -1,0 +1,7 @@
+key to metrics from Shui Li 2014 article
+
+1	mefb/Q_nmi; same result as our own code
+2	mefb/Q_y; yangs metric, based on wang/ssim
+3	mefb/Q_c; (cvejic)
+4	mefb/Q_abf; gradient
+5	mefb/Q_p; phase congruency
