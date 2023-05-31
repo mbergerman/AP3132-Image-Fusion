@@ -1,8 +1,7 @@
-function Q=Q_nmi(A,B,F,varargin)
+function Q=Q_nmi(A,B,F)
     mi_af = entropy(A) + entropy(F) - H(A, F);
     mi_bf = entropy(B) + entropy(F) - H(B, F);
     Q = 2*( mi_af / (entropy(A) + entropy(F)) + mi_bf / (entropy(B) + entropy(F)) );
-
 end
 
 function E=H(A,B)
@@ -16,3 +15,4 @@ function E=H(A,B)
     p = nonzeros(jointProbability(:));
     E = -sum(p.*log2(p));
 end 
+
