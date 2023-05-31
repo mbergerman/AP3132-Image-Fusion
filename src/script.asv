@@ -1,5 +1,7 @@
 debug = false;
 
+close all
+
 n = 5;
 Q_nmi_wt = zeros(n, 1);
 Q_nmi_gf = zeros(n, 1);
@@ -26,8 +28,8 @@ for i = 1:n
     Q_nmi_wfusimg(i) = Q_nmi(image_a, image_b, fused_wfusimg);
     
     Q_ssim_wt(i) = Q_ssim(image_a, image_b, fused_wt);
-%     Q_ssim_gf(i) = Q_ssim(image_a, image_b, fused_gf);
-%     Q_ssim_wfusimg(i) = Q_ssim(image_a, image_b, fused_wfusimg);
+    Q_ssim_gf(i) = Q_ssim(image_a, image_b, fused_gf);
+    Q_ssim_wfusimg(i) = Q_ssim(image_a, image_b, fused_wfusimg);
     
     if debug
         figure('Position', [80 80 1200 600]);
@@ -59,5 +61,5 @@ end
 quality_nmi = [mean(Q_nmi_wt), mean(Q_nmi_gf), mean(Q_nmi_wfusimg)];
 quality_ssim = [mean(Q_ssim_wt), mean(Q_ssim_gf), mean(Q_ssim_wfusimg)];
 
-figure('Position', [80 80 1400 500])
+figure('Position', [80 80 1400 500]);
 bar([quality_nmi ; quality_ssim]);

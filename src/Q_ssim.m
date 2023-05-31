@@ -5,7 +5,7 @@ function Q = Q_ssim(A, B, F)
     F = cast(F, 'double');
 
     % Get the size of the image
-    [height, width] = size(image);
+    [height, width] = size(F);
 
     % Define the size of the square region
     squareSize = 7;
@@ -14,8 +14,8 @@ function Q = Q_ssim(A, B, F)
     count = 0;
 
     % Iterate over each square region
-    for i = 1:squareSize:height
-        for j = 1:squareSize:width
+    for i = 1:height-squareSize
+        for j = 1:width-squareSize
             % Extract the 7x7 square region
             Aw = A(i:i+squareSize-1, j:j+squareSize-1);
             Bw = B(i:i+squareSize-1, j:j+squareSize-1);
