@@ -21,9 +21,9 @@ function iw_image = haar_iwt(w_image)
 
         % Apply idwt2 to coarse scale
         % Carefully choose cA and details matrices cH, cV, and cD
-        tmp = idwt2(cA, cH, cV, cD, wavename);
+        wcomp = idwt2(cA, cH, cV, cD, wavename);
 
         % Substitute wavelet component into coarse scale
-        iw_image(1:2^(j+1) , 1:2^(j+1)) = tmp;
+        iw_image(1:2^(j+1) , 1:2^(j+1)) = wcomp;
     end
 end
