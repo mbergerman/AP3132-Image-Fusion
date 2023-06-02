@@ -17,10 +17,10 @@ function w_image = haar_wt(image)
 
         % Build-up the wavelet component according to Figure 1 in labwork
         % cA->T_phi, cH->T^H_psi, cV->T^V_psi, cD->T^D_psi
-        tmp = [cA,cH; cV,cD];
+        wcomp = [cA,cH; cV,cD];
 
         % Substitute wavelet component into coarse scale
-        w_image(1:2^(j+1),1:2^(j+1)) = tmp;
+        w_image(1:2^(j+1),1:2^(j+1)) = wcomp;
 
     end
 end
