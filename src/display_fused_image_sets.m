@@ -36,24 +36,26 @@ for i = 1:1
     set(0,'defaultfigurecolor','w') %sets background all following figures to white instead of grey
     %figure('Position', [80 80 1200 600]);
     figure;
+    %uses ' Controllable tight subplot ' add-on for thighter subplots
+    margins = [0.00,0.02];
 
-    subplot_tight(2, 3, 1.5);
+    subplot_tight(2, 3, 1.5, margins);
     imshow(image_a);
     title('Image 1');
 
-    subplot_tight(2, 3, 2.5);
+    subplot_tight(2, 3, 2.5, margins);
     imshow(image_b);
     title('Image 2');
 
-    subplot_tight(2, 3, 4);
+    subplot_tight(2, 3, 4, margins);
     imshow(im2double(fused_wt));
     title('Wavelet Transform');
 
-    subplot_tight(2, 3, 5);
+    subplot_tight(2, 3, 5, margins);
     imshow(fused_gf);
     title('Guided Filter');
 
-    subplot_tight(2, 3, 6);
+    subplot_tight(2, 3, 6, margins);
     imshow(fused_wfusimg);
     title('Matlab wfusimg');
     
