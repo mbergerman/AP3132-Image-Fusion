@@ -50,7 +50,7 @@ for i = 1:n
         title('Fused image: Guided Filter');
 
         subplot(1, 3, 3);
-        imshow(fused_matlab);
+        imshow(fused_wfusimg);
         title('Fused image: Matlab wfusimg');
     end
 end
