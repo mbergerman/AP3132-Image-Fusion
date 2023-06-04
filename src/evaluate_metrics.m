@@ -65,9 +65,9 @@ xlim([0 n+1])
 ylim([0.5 1.5])
 
 filename = fullfile('..', 'figures', 'Qnmi_sorted.png');
-filename2 = fullfile('..', 'figures', 'Qnmi_sorted.eps');
-exportgraphics(gcf,filename,'Resolution',300)
-exportgraphics(gcf,filename2)
+filename2 = fullfile('..', 'figures', 'Qnmi_sorted.emf');
+exportgraphics(gcf,filename,'Resolution',400)
+exportgraphics(gca,filename2, 'BackgroundColor','none')
 
 %%
 figure('Units', 'normalized', 'Position', [0.4, 0.4, 0.45, 0.45]);
@@ -92,9 +92,9 @@ ylim([0.5 1])
 sgtitle('Q_{C} scores, sorted for guided filtering')
 
 filename = fullfile('..', 'figures', 'Qc_sorted.png');
-filename2 = fullfile('..', 'figures', 'Qc_sorted.eps');
-exportgraphics(gcf,filename,'Resolution',300)
-exportgraphics(gcf,filename2)
+filename2 = fullfile('..', 'figures', 'Qc_sorted.emf');
+exportgraphics(gcf,filename,'Resolution',400)
+exportgraphics(gcf,filename2, 'BackgroundColor','none')
 
 %%
 quality_nmi = [mean(Q_nmi_wt), mean(Q_nmi_gf), mean(Q_nmi_wfusimg)];

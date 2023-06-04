@@ -10,7 +10,7 @@ n = num_imgs;
 % Q_cvejic_gf = zeros(n, 1);
 % Q_cvejic_wfusimg = zeros(n, 1);
 
-for i = 1:1
+for i = 1:n
     i_a = i*2-1;
     i_b = i*2;
 
