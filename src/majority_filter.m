@@ -12,15 +12,18 @@ function filtered_map = majority_filter(binary_map)
     % If the center pixel is from image A and the majority of the
     % surrounding pixels are from image B, switch the center pixel
     % to image B    
-    flip_b = binary_map == 1 & count <= filter_size^2/2;
-    filtered_map(flip_b) = 0;
+    flip_to_b = binary_map > 0 & count < filter_size^2/2;
+    filtered_map(flip_to_b) = 0;
     
     % If the center pixel is from image B and the majority of the
     % surrounding pixels are from image A, switch the center pixel
 	% to image A
-    flip_a = binary_map == 0 & count >= filter_size^2/2;
-    filtered_map(flip_a) = 1;
-   
+    flip_to_a = binary_map < 1 & count > filter_size^2/2;
+    filtered_map(flip_to_a) = 1;
+
+    % Removes all equal/undesided cases
+    filtered_map = logical(filtered_map);
+
     
 %     
 %     % Loop over each pixel in the binary map
