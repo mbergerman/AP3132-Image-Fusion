@@ -97,13 +97,14 @@ exportgraphics(gcf,filename,'Resolution',400)
 exportgraphics(gcf,filename2, 'BackgroundColor','none')
 
 %%
-quality_nmi = [mean(Q_nmi_wt), mean(Q_nmi_gf), mean(Q_nmi_wfusimg)];
-quality_cvejic = [mean(Q_cvejic_wt), mean(Q_cvejic_gf), mean(Q_cvejic_wfusimg)];
+Q_cvejic_wt_filtered = Q_cvejic_wt(Q_cvejic_wt<2); %removes big outlier (4.3>>1)
+quality_nmi = [NaN, mean(Q_nmi_wt), mean(Q_nmi_gf), mean(Q_nmi_wfusimg)];
+quality_cvejic = [mean(Q_cvejic_wt_filtered), mean(Q_cvejic_wt), mean(Q_cvejic_gf), mean(Q_cvejic_wfusimg)];
 
 %figure('Position', [80 80 1400 500]);
 figure('Units', 'normalized', 'Position', [0.4, 0.4, 0.5, 0.35]);
 bar([quality_nmi ; quality_cvejic]);
-legend('Wavelet Transform', 'Guided Filtering', 'Matlab wfusimg','Location', 'SouthEast');
+legend('Wavelet Transform, Q_C<2', 'Wavelet Transform', 'Guided Filtering', 'Matlab wfusimg','Location', 'SouthWest');
 
 ylabel('Averaged Q_{NMI} or Q_{C} scores')
 title('Average quality scores for 2 different quality scores and 3 image fusion methods')
