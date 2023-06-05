@@ -21,9 +21,9 @@ for i = 1:n
     lv = floor(log2(min(size(image_a,[1 2]))));
     fused_wfusimg = cast(wfusimg(image_a, image_b, wv, lv, 'mean', 'mean'), "uint8");
 
-    filename_wt = fullfile('..', 'data', 'fused_images', ['image_' num2str(i) '_wt.png']);
-    filename_gf = fullfile('..', 'data', 'fused_images', ['image_' num2str(i) '_gf.png']);
-    filename_wfusimg = fullfile('..', 'data', 'fused_images', ['image_' num2str(i) '_wfusimg.png']);
+    filename_wt = fullfile('..', 'data', 'fused_images', sprintf('image_%02d_wt.png', i))
+    filename_gf = fullfile('..', 'data', 'fused_images', sprintf('image_%02d_gf.png', i))
+    filename_wfusimg = fullfile('..', 'data', 'fused_images', sprintf('image_%02d_wfusimg.png', i))
     imwrite(fused_wt, filename_wt);
     imwrite(fused_gf, filename_gf);
     imwrite(fused_wfusimg, filename_wfusimg);
