@@ -31,6 +31,6 @@ function fused_image = wt_fusion(I_1, I_2, debug)
         dipshow(mat2im(wt_b), 'percentile');
         dipshow(mat2im(fused_wt_max), 'percentile');
 
-        dipshow(mat2im(fused_image)); %should be 'normal' mapping/scaling
+        dipshow(mat2im(fused_image), 'normal');
     end
 end
