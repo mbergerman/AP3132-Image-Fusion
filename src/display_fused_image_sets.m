@@ -17,9 +17,9 @@ for i = 1:n
     image_a = crop_pow2(rgb2gray(imread(imgs(i_a))));
     image_b = crop_pow2(rgb2gray(imread(imgs(i_b))));
     
-    filename_wt = fullfile('..', 'data', 'fused_images', ['image_' num2str(i) '_wt.png']);
-    filename_gf = fullfile('..', 'data', 'fused_images', ['image_' num2str(i) '_gf.png']);
-    filename_wfusimg = fullfile('..', 'data', 'fused_images', ['image_' num2str(i) '_wfusimg.png']);
+    filename_wt = fullfile('..', 'data', 'fused_images', sprintf('image_%02d_wt.png', i))
+    filename_gf = fullfile('..', 'data', 'fused_images', sprintf('image_%02d_gf.png', i))
+    filename_wfusimg = fullfile('..', 'data', 'fused_images', sprintf('image_%02d_wfusimg.png', i))
     
     fused_wt = imread(filename_wt);
     fused_gf = imread(filename_gf);
@@ -59,7 +59,7 @@ for i = 1:n
     imshow(fused_wfusimg);
     title('Matlab wfusimg');
     
-    filename = fullfile('..', 'figures', 'fused_sets', ['fused_set_' num2str(i) '.png']);
+    filename = fullfile('..', 'figures', 'fused_sets', sprintf('fused_set_%02d_wt.png', i));
     exportgraphics(gcf,filename,'Resolution',300)
 
 end
