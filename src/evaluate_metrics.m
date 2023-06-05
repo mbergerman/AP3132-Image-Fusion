@@ -65,7 +65,7 @@ xlim([0 n+1])
 ylim([0.5 1.5])
 
 filename = fullfile('..', 'figures', 'Qnmi_sorted.png');
-filename2 = fullfile('..', 'figures', 'Qnmi_sorted.emf');
+filename2 = fullfile('..', 'figures', 'Qnmi_sorted.eps');
 exportgraphics(gcf,filename,'Resolution',400)
 exportgraphics(gca,filename2, 'BackgroundColor','none')
 
@@ -82,7 +82,7 @@ title('Q_{C} scores, sorted for guided filtering')
 xlim([0 n+1])
 
 filename = fullfile('..', 'figures', 'Qc_sorted.png');
-filename2 = fullfile('..', 'figures', 'Qc_sorted.emf');
+filename2 = fullfile('..', 'figures', 'Qc_sorted.eps');
 exportgraphics(gcf,filename,'Resolution',400)
 exportgraphics(gcf,filename2, 'BackgroundColor','none')
 
