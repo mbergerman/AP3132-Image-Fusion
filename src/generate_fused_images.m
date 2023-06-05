@@ -1,5 +1,5 @@
 debug = false;
-%runtime multiple minutes, mainly write time
+%runtime 1 minute, mainly write time
 
 imgs = config_images('../data/input');
 num_imgs=length(imgs)/2;
