@@ -2,6 +2,10 @@
 ## Final project: Image fusion using wavelet transform
 In this final project for the ADIP course at TU Delft, two image fusion algorithms are reproduced in Matlab from scientific papers. These are further compared using performance measurements.
 
+The script `generate_fused_images.m` generates, for each of 3 different algorithms, 63 fused images which corresponds with the image pair in the `data/input` folder.
+
+The script `evaluate_metrics.m` evaluates every fused image using two objective performance metrics and plots the results.
+
 ## Reproduced papers
 
 * S. Li, X. Kang and J. Hu, “Image Fusion With Guided Filtering,” in IEEE Transactions on Image Processing, vol. 22, no. 7, pp. 2864-2875, July 2013, doi: 10.1109/TIP.2013.2244222.
