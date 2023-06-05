@@ -12,6 +12,7 @@ function E=H(A,B)
     % Calculate the joint probability
     jointProbability = jointHistogram / numel(A);
     
+    % Return joint entropy
     p = nonzeros(jointProbability(:));
     E = -sum(p.*log2(p));
 end 

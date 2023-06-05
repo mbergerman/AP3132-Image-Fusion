@@ -1,4 +1,5 @@
 debug = false;
+%runtime multiple minutes, mainly write time
 
 imgs = config_images('../data/input');
 num_imgs=length(imgs)/2;
@@ -49,7 +50,7 @@ for i = 1:n
         title('Fused image: Guided Filter');
 
         subplot(1, 3, 3);
-        imshow(fused_matlab);
+        imshow(fused_wfusimg);
         title('Fused image: Matlab wfusimg');
     end
 end

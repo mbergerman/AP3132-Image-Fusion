@@ -13,7 +13,8 @@ function fused_image = wt_fusion(I_1, I_2, debug)
     wt_a = haar_wt(image_a);
     wt_b = haar_wt(image_b);
 
-    bin_map = abs(wt_a) >= abs(wt_b);
+    bin_map = double( abs(wt_a) > abs(wt_b) );
+    bin_map( abs(wt_a) == abs(wt_b) ) = 0.5;
     bin_map_filtered = majority_filter(bin_map);
 
     fused_wt_max = wt_b;
@@ -30,6 +31,6 @@ function fused_image = wt_fusion(I_1, I_2, debug)
         dipshow(mat2im(wt_b), 'percentile');
         dipshow(mat2im(fused_wt_max), 'percentile');
 
-        dipshow(mat2im(fused_image)); %should be 'normal' mapping/scaling
+        dipshow(mat2im(fused_image), 'normal');
     end
 end
