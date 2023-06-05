@@ -19,9 +19,9 @@ for i = 1:n
     image_a = crop_pow2(rgb2gray(imread(imgs(i_a))));
     image_b = crop_pow2(rgb2gray(imread(imgs(i_b))));
     
-    filename_wt = fullfile('..', 'data', 'fused_images', ['image_' num2str(i) '_wt.png']);
-    filename_gf = fullfile('..', 'data', 'fused_images', ['image_' num2str(i) '_gf.png']);
-    filename_wfusimg = fullfile('..', 'data', 'fused_images', ['image_' num2str(i) '_wfusimg.png']);
+    filename_wt = fullfile('..', 'data', 'fused_images', sprintf('image_%02d_wt.png', i));
+    filename_gf = fullfile('..', 'data', 'fused_images', sprintf('image_%02d_gf.png', i));
+    filename_wfusimg = fullfile('..', 'data', 'fused_images', sprintf('image_%02d_wfusimg.png', i));
     
     fused_wt = imread(filename_wt);
     fused_gf = imread(filename_gf);
@@ -31,9 +31,9 @@ for i = 1:n
     Q_nmi_gf(i) = Q_nmi(image_a, image_b, fused_gf);
     Q_nmi_wfusimg(i) = Q_nmi(image_a, image_b, fused_wfusimg);
     
-    Q_cvejic_wt(i) = metricsQc(image_a, image_b, fused_wt);
-    Q_cvejic_gf(i) = metricsQc(image_a, image_b, fused_gf);
-    Q_cvejic_wfusimg(i) = metricsQc(image_a, image_b, fused_wfusimg);
+    Q_cvejic_wt(i) = Q_c(image_a, image_b, fused_wt);
+    Q_cvejic_gf(i) = Q_c(image_a, image_b, fused_gf);
+    Q_cvejic_wfusimg(i) = Q_c(image_a, image_b, fused_wfusimg);
 
 end
 
@@ -70,26 +70,16 @@ exportgraphics(gcf,filename,'Resolution',400)
 exportgraphics(gca,filename2, 'BackgroundColor','none')
 
 %%
-figure('Units', 'normalized', 'Position', [0.4, 0.4, 0.45, 0.45]);
-subplot(1,2,1);
+figure;%('Units', 'normalized', 'Position', [0.4, 0.4, 0.45, 0.45]);
+
 plot(1:n, Q_cvejic_wt, 'r', 1:n, Q_cvejic_gf, 'g', 1:n, Q_cvejic_wfusimg, 'b');
 legend('Wavelet Transform', 'Guided Filtering', 'Matlab wfusimg','Location', 'NorthEast');
 
 xlabel('sorted images')
 ylabel('Q_{C} scores')
 title('overview')
+title('Q_{C} scores, sorted for guided filtering')
 xlim([0 n+1])
-
-subplot(1,2,2);
-plot(1:n, Q_cvejic_wt, 'r', 1:n, Q_cvejic_gf, 'g', 1:n, Q_cvejic_wfusimg, 'b');
-legend('Wavelet Transform', 'Guided Filtering', 'Matlab wfusimg','Location', 'SouthEast');
-
-xlabel('sorted images')
-ylabel('Q_{C} scores')
-title('zoomed in')
-xlim([0 n+1])
-ylim([0.5 1])
-sgtitle('Q_{C} scores, sorted for guided filtering')
 
 filename = fullfile('..', 'figures', 'Qc_sorted.png');
 filename2 = fullfile('..', 'figures', 'Qc_sorted.emf');
@@ -97,18 +87,19 @@ exportgraphics(gcf,filename,'Resolution',400)
 exportgraphics(gcf,filename2, 'BackgroundColor','none')
 
 %%
-Q_cvejic_wt_filtered = Q_cvejic_wt(Q_cvejic_wt<2); %removes big outlier (4.3>>1)
-quality_nmi = [NaN, mean(Q_nmi_wt), mean(Q_nmi_gf), mean(Q_nmi_wfusimg)];
-quality_cvejic = [mean(Q_cvejic_wt_filtered), mean(Q_cvejic_wt), mean(Q_cvejic_gf), mean(Q_cvejic_wfusimg)];
+quality_nmi = [mean(Q_nmi_wt), mean(Q_nmi_gf), mean(Q_nmi_wfusimg)];
+quality_cvejic = [mean(Q_cvejic_wt), mean(Q_cvejic_gf), mean(Q_cvejic_wfusimg)];
 
 %figure('Position', [80 80 1400 500]);
 figure('Units', 'normalized', 'Position', [0.4, 0.4, 0.5, 0.35]);
 bar([quality_nmi ; quality_cvejic]);
-legend('Wavelet Transform, Q_C<2', 'Wavelet Transform', 'Guided Filtering', 'Matlab wfusimg','Location', 'SouthWest');
+legend('Wavelet Transform', 'Guided Filtering', 'Matlab wfusimg','Location', 'SouthWest');
 
 ylabel('Averaged Q_{NMI} or Q_{C} scores')
 title('Average quality scores for 2 different quality scores and 3 image fusion methods')
-ylim([0 1])
+ylim([0.75 .9])
+yticks([0.75, 0.775, 0.8, 0.825, 0.85, 0.875, 0.9])
+grid on
 xticklabels({'Q_{NMI}', 'Q_{C}'})
 
 filename = fullfile('..', 'figures', 'Qmean_barchart.png');
