@@ -23,8 +23,7 @@ function fused_image = gf_fusion(I_1, I_2, debug)
     % https://nl.mathworks.com/help/images/ref/fspecial.html
     % https://nl.mathworks.com/help/images/ref/locallapfilt.html
 
-    r_g = 5;
-    s_g = 5;
+    r_g = 5; s_g = 5;
     g = fspecial('gaussian', [2*r_g+1,2*r_g+1], s_g);
     S_1 = imfilter(abs(H_1),g,'symmetric','conv');
     S_2 = imfilter(abs(H_2),g,'symmetric','conv');
@@ -32,10 +31,12 @@ function fused_image = gf_fusion(I_1, I_2, debug)
     P_1 = S_1 >= S_2;
     P_2 = S_1 <= S_2;
 
-    W_B_1 = guided_filter(P_1, I_1, 15, 0.3);
-    W_B_2 = guided_filter(P_2, I_2, 15, 0.3);
-    W_D_1 = guided_filter(P_1, I_1, 10, 1e-6);
-    W_D_2 = guided_filter(P_2, I_2, 10, 1e-6);
+    r1 = 15; eps1 = 0.3;
+    r2 = 10; eps2 = 1e-6;
+    W_B_1 = guided_filter(P_1, I_1, r1, eps1);
+    W_B_2 = guided_filter(P_2, I_2, r1, eps1);
+    W_D_1 = guided_filter(P_1, I_1, r2, eps2);
+    W_D_2 = guided_filter(P_2, I_2, r2, eps2);
 
     W_B_exp = exp(W_B_1) + exp(W_B_2);
     W_D_exp = exp(W_D_1) + exp(W_D_2);
