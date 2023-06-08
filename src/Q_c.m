@@ -136,6 +136,12 @@ sigma2_sq = filter2(window, img2.*img2, 'valid') - mu2_sq;
 sigma12 = filter2(window, img1.*img2, 'valid') - mu1_mu2;
 if (C1 > 0 & C2 > 0)
    ssim_map = ((2*mu1_mu2 + C1).*(2*sigma12 + C2))./((mu1_sq + mu2_sq + C1).*(sigma1_sq + sigma2_sq + C2));
+
+   % remove cases where sigmas can contain relative precision rounding
+   % errors, matlab double issue (
+   index = (sigma1_sq./mu1_sq <1e-15) | (sigma2_sq./mu2_sq <1e-15);
+   tmp = (2*mu1_mu2 + C1)./(mu1_sq + mu2_sq + C1);
+   ssim_map(index) = tmp(index);
 else
    numerator1 = 2*mu1_mu2 + C1;
    numerator2 = 2*sigma12 + C2;
@@ -145,7 +151,7 @@ else
    
    index = (denominator1.*denominator2 > 0);
    ssim_map(index) = (numerator1(index).*numerator2(index))./(denominator1(index).*denominator2(index));
-   index = (denominator1 ~= 0) & (denominator2 == 0);
+   index = (denominator2 <1e-8 );
    ssim_map(index) = numerator1(index)./denominator1(index);
 end
 

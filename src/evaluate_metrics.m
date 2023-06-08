@@ -73,7 +73,7 @@ exportgraphics(gca,filename2, 'BackgroundColor','none')
 figure;%('Units', 'normalized', 'Position', [0.4, 0.4, 0.45, 0.45]);
 
 plot(1:n, Q_cvejic_wt, 'r', 1:n, Q_cvejic_gf, 'g', 1:n, Q_cvejic_wfusimg, 'b');
-legend('Wavelet Transform', 'Guided Filtering', 'Matlab wfusimg','Location', 'NorthEast');
+legend('Wavelet Transform', 'Guided Filtering', 'Matlab wfusimg','Location', 'SouthEast');
 
 xlabel('sorted images')
 ylabel('Q_{C} scores')
